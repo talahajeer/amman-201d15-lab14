@@ -8,19 +8,24 @@ const Cart = function (items) {
 
 Cart.prototype.addItem = function (product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
-   let newItem  = new CartItem(product,quantity);
-   this.items.push(newItem);
-
+  let newItem = new CartItem(product, quantity);
+  this.items.push(newItem);
+let parent = getElementById('cartContents');
+let child = document.createElement('li');
+parent.appendChild(child);
+child.textContent = newItem;
 };
+
 
 Cart.prototype.saveToLocalStorage = function () {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
-  localStorage.setItem('cart',JSON.stringify(this.items))
+  localStorage.setItem('cart', JSON.stringify(this.items))
 };
 
 Cart.prototype.removeItem = function (item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
+  localStorage.removeItem(this.items);
 };
 
 const CartItem = function (product, quantity) {
@@ -61,3 +66,16 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
+
+let list = document.getElementById('items');
+for (let i = 0; i < Product.allProducts.length; i++) {
+
+  let item = document.createElement('option');
+
+  item.textContent = Product.allProducts[i].name;
+  list.appendChild(item);
+  console.log(item)
+}
+
+
+let message = getElementBy
